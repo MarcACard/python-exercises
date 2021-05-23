@@ -13,9 +13,30 @@ def reverse_vowels(s):
     >>> reverse_vowels("Reverse Vowels In A String")
     'RivArsI Vewols en e Streng'
 
-    reverse_vowels("aeiou")
+    >>> reverse_vowels("aeiou")
     'uoiea'
 
-    reverse_vowels("why try, shy fly?")
-    'why try, shy fly?''
+    >>> reverse_vowels("why try, shy fly?")
+    'why try, shy fly?'
     """
+
+    vowels = "aeiou"
+    split_string = list(s)
+    # Separate iterators to start from each end.
+    start_i = 0
+    end_i = len(s) - 1
+
+    while start_i < end_i:
+        if split_string[start_i].lower() not in vowels:
+            start_i += 1
+        elif split_string[end_i].lower() not in vowels:
+            end_i -= 1
+        else:
+            split_string[start_i], split_string[end_i] = (
+                split_string[end_i],
+                split_string[start_i],
+            )
+            start_i += 1
+            end_i -= 1
+
+    return "".join(split_string)

@@ -21,3 +21,19 @@ def sum_pairs(nums, goal):
         >>> sum_pairs([11, 20, 4, 2, 1, 5], 100)
         ()
     """
+
+    # a + b = c, to find the first pair, flip the equation
+    # c - a = b, collect the difference and find a matching value
+    # from the list if it exists
+
+    potential_pairs = set()
+
+    for num in nums:
+        difference = goal - num
+
+        if difference in potential_pairs:
+            return (difference, num)
+
+        potential_pairs.add(num)
+
+    return ()

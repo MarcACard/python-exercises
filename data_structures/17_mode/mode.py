@@ -11,3 +11,9 @@ def mode(nums):
         >>> mode([2, 2, 3, 3, 2])
         2
     """
+    counter = {}
+
+    for num in nums:
+        counter[num] = counter.get(num, 0) + 1
+
+    return max(counter, key=lambda num: counter[num])
