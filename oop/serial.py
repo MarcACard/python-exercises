@@ -29,12 +29,12 @@ class SerialGenerator:
         return f"<SerialGenerator start={self.start} next={self.next}>"
 
     def generate(self):
-        """Return a serial # and intrement next_serial attribute"""
+        """Return the next serial # and intrement next attr"""
         serial = self.next
         self.next += 1
 
         return serial
 
     def reset(self):
-        """Reset the next_serial to the initialized starting value"""
+        """Reset the next attr to the initialized starting value"""
         self.next = self.start
