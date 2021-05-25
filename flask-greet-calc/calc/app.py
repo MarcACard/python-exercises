@@ -34,3 +34,18 @@ def get_div():
     b = int(request.args.get("b", ""))
 
     return str(div(a, b))
+
+
+# Further Study
+# -------------
+operations = {"add": add, "sub": sub, "mult": mult, "div": div}
+
+
+@app.route("/math/<operator>")
+def get_result(operator):
+    """Get the result of a & b based on the operator route used."""
+
+    a = int(request.args.get("a", ""))
+    b = int(request.args.get("b", ""))
+
+    return str(operations[operator](a, b))
