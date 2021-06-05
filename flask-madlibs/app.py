@@ -26,7 +26,7 @@ def generate_story():
     """Construct the user story from their submitted answers and render it to the user."""
     user_answers = request.form.to_dict()
 
-    story_template = STORIES.get(session['story'], "1")
+    story_template = STORIES.get(session['story'], "")
     story = Story(
         story_template["story_name"],
         story_template["prompts"],
