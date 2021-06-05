@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from random import choice
 from scripts.stories import *
 
 
 app = Flask(__name__)
-
+app.config["SECRET_KEY"] = "SHHHHHHHHHHH"
 
 @app.route("/")
 def home():
@@ -13,11 +13,11 @@ def home():
     # ? would be useful here.
     random_story = STORIES[choice(list(STORIES.keys()))]
 
+    session['story'] = str(random_story["id"])
     return render_template(
         "index.html",
         prompts=random_story["prompts"],
-        title=random_story["story_name"],
-        id=random_story["id"],
+        title=random_story["story_name"]
     )
 
 
@@ -26,8 +26,9 @@ def generate_story():
     """Construct the user story from their submitted answers and render it to the user."""
     user_answers = request.form.to_dict()
 
-    story_template = STORIES[user_answers.get("id", "")]
+    story_template = STORIES.get(session['story'], "1")
     story = Story(
+        story_template["story_name"],
         story_template["prompts"],
         story_template["story"]
     )

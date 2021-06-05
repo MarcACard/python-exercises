@@ -22,9 +22,9 @@ class Story:
         'I love to eat a good mango.'
     """
 
-    def __init__(self, words, text):
+    def __init__(self, title, words, text):
         """Create story with words and template text."""
-
+        self.title = title
         self.prompts = words
         self.template = text
 
