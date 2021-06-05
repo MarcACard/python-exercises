@@ -29,9 +29,7 @@ def generate_story():
     story_template = STORIES[user_answers.get("id", "")]
     story = Story(
         story_template["prompts"],
-        story_template["story"],
-        story_template["story_name"],
-        story_template["id"],
+        story_template["story"]
     )
 
     user_story = story.generate(user_answers)
