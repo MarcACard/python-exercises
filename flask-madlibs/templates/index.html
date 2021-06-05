@@ -1,25 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MadLibs</title>
-</head>
+{% block subtitle %}Home{% endblock %}
 
-<body>
-  <h1>MadLibs</h1>
-  <main>
-    <form action="/story" method="post">
-      {% for prompt in prompts%}
-      <label for={{prompt}}>{{prompt}}:</label>
-      <input type="text" id={{prompt}} name={{prompt}}>
-      <br />
-      {% endfor %}
-      <button>Submit</button>
-    </form>
-  </main>
-</body>
-
-</html>
+{% block content %}
+<!-- <div class="row align-items-center"> -->
+<div class="col=md-10 mx-auto text-center text-lg-start mb-5">
+  <h1 class="fw-bold lh-2 text-center">A hilariously unique story everytime 🤣</h1>
+  <p class="lead text-center">Just fill out the form below and hit <b>generate</b> to let the laughs begin! </p>
+</div>
+<div class="col-md-10 mx-auto col-lg-6">
+  <form action="/story" method="post" class="p-4 p-md-4 bg-light rounded shadow-lg">
+    <h2 class="mb-4">{{ title }}</h2>
+    {% for prompt in prompts %}
+    <div class=" form-floating mb-3">
+      <input class="form-control" type="text" id={{prompt}} name={{prompt}} placeholder={{prompt}} required>
+      <label for={{prompt}}>{{prompt.replace("_", " ")}}</label>
+    </div>
+    {% endfor %}
+    <input type="hidden" name="id" value={{id}}>
+    <button class="btn btn-primary">Generate</button>
+    <!--<button id="new-story" class="btn btn-secondary">New Story</button> -->
+  </form>
+</div>
+<!-- </div> -->
+{% endblock %}

@@ -1,0 +1,82 @@
+{
+  "1": {
+    "id": "1",
+    "story_name": "Sample Story",
+    "story": "Once upon a time in a long-ago {place}, there lived a large {noun} {verb}. It loved to {adjective} {plural noun}.",
+    "prompts": [
+      "place",
+      "noun",
+      "verb",
+      "adjective",
+      "plural_noun"
+    ]
+  },
+  "2": {
+    "id": "2",
+    "story_name": "If I were President",
+    "story": "My name is {name} and I am {number} years old. If i were president, I'd do a whole bunch of {adjective} things. My first executive order would to ban {verb} and then give every citizen {number_2} {plural_noun}.",
+    "prompts": [
+      "name",
+      "number",
+      "adjective",
+      "verb",
+      "number_2",
+      "plural_noun"
+    ]
+  },
+  "3": {
+    "id": "3",
+    "story_name": "At the Arcade!",
+    "story": "When I go to the arcade with my {plural_noun} there are lots of games to play. I spend lots of time there with my friends. IN the game X-Men you can be differnt {plural_noun_2}. The point of the game is to {verb} every robot.",
+    "prompts": [
+      "plural_noun",
+      "plural_noun_2",
+      "verb"
+    ]
+  },
+  "5": {
+    "id": "5",
+    "story_name": "Trip to the Park",
+    "story": "Yesterday, my friend and I went to the park. On our way to the {adjective} park, we saw big {adjective_2} balloons tied to {noun}. Once we got to the {adjective_3} park, the sky turned {adjective_4}. It started to {verb}  and {verb_2}. My friend and I {verb_3} all the way home. Tomorrow we will try to go to the {adjective_5}  park again and hopefully it doesnt {verb_4}!",
+    "prompts": [
+      "adjective",
+      "adjective_2",
+      "noun",
+      "adjective_3",
+      "adjective_4",
+      "verb",
+      "verb_2",
+      "verb_3",
+      "adjective_5",
+      "verb_4"
+    ]
+  },
+  "6": {
+    "id": "6",
+    "story_name": "Weird News",
+    "story": "A {noun} in {place} was arrested this morning after he was caught {verb_ending_in_ing} in front of {noun_2}. {name} had a history of {ver_2}, but no one-not even his {noun_3}-ever imagined he'd {verb_3} with a {noun_3} stuck in his {part_of_body}. After drinking a {type_of_liquid}, cops followed him to a {place_2} where he reportedly {past_tense_verb} in the fry machine. Later, a woman from {foreign_country} was charged with a similar crime. But rather than {verb_5} with a {noun_5}, she {past_tense_verb_2} with a {adjective} dog. Either way, we imagine that after witnessing him {verb_6} with a {noun_6} there are probably a whole lot of {plural_noun} that are going to need some therapy!",
+    "prompts": [
+      "noun",
+      "place",
+      "verb_ending_in_ing",
+      "noun_2",
+      "name",
+      "verb_2",
+      "noun_3",
+      "verb_3",
+      "noun_4",
+      "part_of_body",
+      "type_of_liquid",
+      "place_2",
+      "past_tense_verb",
+      "foreign_country",
+      "verb_5",
+      "noun_5",
+      "past_tense_verb_2",
+      "adjective",
+      "verb_6",
+      "noun_6",
+      "plural_noun"
+    ]
+  }
+}
