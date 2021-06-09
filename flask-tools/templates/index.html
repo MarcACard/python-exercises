@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block subtitle %}Home{% endblock %}
+
+{% block content %}
+<div class="mx-auto col-md-10 text-lg-start mb-4">
+  <div class="text-center">
+    <h1 class="fw-bold lh-2">{{ title }}</h1>
+    <p class="lead">{{ instructions }}</p>
+
+    {% block question_content %}
+    {% endblock %}
+
+    {% if is_index %}
+    <!-- Figure out how to Conditionally display -->
+    <a class="btn btn-primary btn-lg mt-4" href="/question/0">Start Survey</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

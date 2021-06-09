@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block subtitle %}Q-{{ q_num }}{% endblock %}
+
+{% set survey_inactive = false %}
+{% block question_content %}
+<div class="col-md-10 mx-auto col-lg-8">
+  <form action="/answer" method="post">
+    <div class="p-4 p-md-4 bg-light rounded shadow-sm">
+      <div class="mb-3">
+        <p>{{ question.question }}</p>
+        {% for choice in question.choices %}
+        <input name="answer" type="radio" class="btn-check" id="{{ choice.lower() }}" autocomplete="off"
+          value="{{choice}}">
+        <label class="btn btn-outline-primary" for="{{ choice.lower() }}">{{ choice }}</label>
+        {% endfor %}
+        <input type="hidden" name="q_num" value={{ q_num }}>
+      </div>
+      <div>
+        <button class="btn btn-primary btn-sm">Next</button>
+      </div>
+    </div>
+  </form>
+  {% endblock %}

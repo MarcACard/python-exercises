@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey | {% block subtitle %}{% endblock %} </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="border-bottom py-3 mb-2">
+    <div class="container">
+      <header>
+        <a href="/" class="mb-3 mb-md-0 me-md-auto text-decoration-none fs-4 fw-bold">Survey</a>
+      </header>
+    </div>
+  </div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+  {% set type = "alert-danger" if category == "error" else "alert-success" %}
+  <div class="container">
+    <div class=" {{ type }} rounded text-center p-0">
+      <p>{{ message }}</p>
+    </div>
+  </div>
+  {% endfor %}
+  {% endwith %}
+  <div class="container">
+    <div class="text-center px-4 py-5 my-3">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+</body>
+
+</html>
