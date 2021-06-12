@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <!-- HEADER CONTAINER-->
   <div class="border-bottom py-3 mb-2">
     <div class="container">
       <header>
@@ -18,6 +19,7 @@
       </header>
     </div>
   </div>
+  <!-- FLASH NOTIFICATION BANNER -->
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% for category, message in messages %}
   {% set type = "alert-danger" if category == "error" else "alert-success" %}
@@ -28,6 +30,7 @@
   </div>
   {% endfor %}
   {% endwith %}
+  <!-- MAIN CONTENT CONTAINER-->
   <div class="container">
     <div class="text-center px-4 py-5 my-3">
       {% block content %}

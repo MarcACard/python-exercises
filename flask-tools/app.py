@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash
-from flask.templating import render_template_string
+from flask import Flask, render_template, request, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from surveys import *
 
@@ -9,28 +8,27 @@ app.config["SECRET_KEY"] = "FaKe_SeCrEt_KeY"
 toolbar = DebugToolbarExtension(app)
 
 
-# Storing as List, sessions not yet learned.
-responses = []
-
-
 @app.route("/")
 def home():
-    title = satisfaction_survey.title
-    instructions = satisfaction_survey.instructions
-
-    return render_template(
-        "index.html", title=title, instructions=instructions, is_index=True
-    )
+    return render_template("index.html", survey=satisfaction_survey, is_index=True)
 
 
-@app.route("/question/<q_num>")
+@app.route("/start-session", methods=["POST"])
+def start_session():
+    session["responses"] = []
+    return redirect("/question/0")
+
+
+@app.route("/question/<int:q_num>")
 def survey_question(q_num):
     """Render Survey Questions to user. Current functionality will prevent users from retaking the survery or accessing previous questions."""
-    if len(satisfaction_survey.questions) == len(responses):
-        flash("Survey Already Completed", "error")
+    responses = session["responses"]
+
+    if len(responses) == len(satisfaction_survey.questions):
+        # Survey is completed
         return redirect("/thank-you")
 
-    if int(q_num) != len(responses):
+    if len(responses) != q_num:
         flash(
             "Attempted to access invalid question, or question already answered",
             "error",
@@ -38,39 +36,30 @@ def survey_question(q_num):
         return redirect(f"/question/{len(responses)}")
 
     # Render survey question info
-    title = satisfaction_survey.title
-    instructions = satisfaction_survey.instructions
-    question = satisfaction_survey.questions[int(q_num)]
+    question = satisfaction_survey.questions[q_num]
 
     return render_template(
-        "question.html",
-        question=question,
-        q_num=q_num,
-        title=title,
-        instructions=instructions,
+        "question.html", survey=satisfaction_survey, question=question, q_num=q_num
     )
 
 
 @app.route("/answer", methods=["POST"])
 def post_answer():
-    """Post user submitted answer to Foo DB & redirect to next question or thank you page if survey completed."""
+    """Post user submitted answer to user session & redirect to next question or thank you page if survey completed."""
     answer = request.form.get("answer", "")
-    next_question = int(request.form.get("q_num", "")) + 1
-    redirect_path = ""
 
-    # Add too Foo DB
+    # Add user answer to their session
+    responses = session["responses"]
     responses.append(answer)
+    session["responses"] = responses
 
     # Determine Next Q or TY Page
-    if next_question < len(satisfaction_survey.questions):
-        redirect_path = f"/question/{next_question}"
+    if len(responses) < len(satisfaction_survey.questions):
+        return redirect(f"/question/{len(responses)}")
     else:
-        redirect_path = "/thank-you"
-        flash("Survey Answers Saved", "info")
-
-    return redirect(redirect_path)
+        return redirect("/thank-you")
 
 
 @app.route("/thank-you")
 def thank_you_page():
-    return render_template("thank-you.html")
+    return render_template("thank-you.html", survey=satisfaction_survey)
