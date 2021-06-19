@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Boggle</h1>
+<!-- Scoreboard -->
+<div>
+  <p id="score">0</p>
+</div>
+<!-- Timer -->
+<div>
+  <p><span id="timer">60</span> seconds</p>
+</div>
+
+<!-- BOGGLE GAME BOARD -->
+<div class="container">
+  {% for row in board %}
+  <div class="row">
+    {% for cell in row %}
+    <div class="col">
+      {{cell}}
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+<!-- USER FEEDBACK ALERTS-->
+<div id="alert-container" class="container">
+
+</div>
+
+<!-- PLAYER FORM -->
+<div>
+  <form id="user-form">
+    <label for="user-input"></label>
+    <input type="text" id="user-input" name="user-input" class="">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}
