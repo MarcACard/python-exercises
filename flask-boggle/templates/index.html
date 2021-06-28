@@ -1,39 +1,78 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Boggle</h1>
-<!-- Scoreboard -->
-<div>
-  <p id="score">0</p>
+<!-- SCOREBOARD | START -->
+<div class="container-lg px-4 mb-3 mb-lg-4 border-bottom">
+  <div class="row align-items-center">
+    <div class="col-lg-3 col-6 order-lg-2 py-1">
+      <div class="text-center fs-4"><b>Score:</b> <span id="score">0</span></div>
+    </div>
+    <div class="col-lg-3 col-6 order-lg-3 py-1">
+      <div class="text-center fs-4"><b>Time Left:</b> <span id="timer">60</span>s</div>
+    </div>
+    <div class="col-lg-3 col-6 order-lg-1 mb-1 py-1">
+      <div class="text-center fw-light lh-1"><b>Highscore:</b></span> <span id="highscore">{{stats.highscore}}</span>
+      </div>
+    </div>
+    <div class="col-lg-3 col-6 order-lg-4 mb-1 py-1">
+      <div class="text-center fw-light lh-1"><b>Games Played:</b> <span id="games-played">{{stats.games_played}}</span>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- Timer -->
-<div>
-  <p><span id="timer">60</span> seconds</p>
-</div>
-
+<!-- SCOREBOARD | END-->
 <!-- BOGGLE GAME BOARD -->
-<div class="container">
-  {% for row in board %}
-  <div class="row">
-    {% for cell in row %}
-    <div class="col">
-      {{cell}}
+<div class="container-lg mb-4 " id="board">
+  <div class="bg-white rounded-3">
+    {% for row in board %}
+    <div class="row">
+      {% for cell in row %}
+      <div class="col fs-1 fw-bold text-center">
+        {{cell}}
+      </div>
+      {% endfor %}
     </div>
     {% endfor %}
   </div>
-  {% endfor %}
 </div>
-<!-- USER FEEDBACK ALERTS-->
-<div id="alert-container" class="container">
-
-</div>
-
-<!-- PLAYER FORM -->
-<div>
-  <form id="user-form">
-    <label for="user-input"></label>
-    <input type="text" id="user-input" name="user-input" class="">
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<!-- USER FORM, FEEDBACK ALERTS, & WORD LIST-->
+<div class="container-lg">
+  <div class="row">
+    <!-- USER FEEDBACK ALERTS-->
+    <div id="alert-container" class="col">
+      <div id="alert" class="alert mb-2 text-center" style="display:none"></div>
+    </div>
+  </div>
+  <div class="row gx-5">
+    <!-- USER FORM -->
+    <div class="col-lg">
+      <div class="text-center p-3 bg-white rounded-3 mb-3 shadow">
+        <div class="text-center">
+          <div class="fs-5 fw-light">Find Words</div>
+        </div>
+        <form id="user-form">
+          <div class="mb-2">
+            <label for="user-input"></label>
+            <input type="text" id="user-input" name="user-input" class="form-control" required autocomplete="off">
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- WORD LIST -->
+    <div class="col-lg">
+      <div class="p-3 bg-white rounded-3 mb-4 shadow">
+        <div class="text-center mb-2">
+          <div class="fs-5 fw-light">Words Found</div>
+        </div>
+        <div>
+          <ul id="word-list">
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
